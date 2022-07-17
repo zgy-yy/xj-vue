@@ -1,115 +1,110 @@
 export interface VideoInfo {
-    actor_tags: Array<{ tagid: number, tagtype: number, tagname: string, itemcount: number }>
-    areaid: number
+    actor_tags: Array<{ tagid: string, tagtype: string, tagname: string, itemcount: string }>
+    areaid: string
     areaname: string
     author: string
-    authorid: number
-    cateid: number
-    catename: string
-    commentcount: number
+    authorid: string
+    cateid: string
+    catename: string //类别
+    commentcount: string
     coverpic: string //img
     createtime: string
-    definition: number
+    definition: string // 分辨率 0 ， 3 ， 4
     down_url: string
     downcount_total: number
     downlist: []
-    downnum: number
+    downnum: string
     duration: string
-    episode_status: number
-    episode_total: number
+    episode_status: string
+    episode_total: string //集数
     exclusive: 0
     intro: string
-    islimit: number
-    islimitv3: number
-    isvip: number
-    limit_free: 0
-    mosaic: number
+    islimit: string
+    islimitv3: string
+    isvip: string
+    limit_free: number
+    mosaic: string //码
     play_url: string
-    playcount_total: 4
-    playindex: 0
+    playcount_total: number
+    playindex: number
     playlist: []
     portrait: string
     scorenum: string
-    tags: Array<{ tagid: number, tagtype: number, tagname: string, itemcount: number }>
+    tags: Array<{ tagid: string, tagtype: string, tagname: string, itemcount: string }>
     title: string
     updatetime: string
-    upnum: number
-    view_price: number
-    vodid: number
+    upnum: string
+    view_price: string
+    vodid: string
     vodkey: string
-    yearid: number
-    yearname: number
+    yearid: string
+    yearname: string
 }
 
 //播放页信息
 export interface PlayInfo {
-
     encurl: number
     httpurl: string
     httpurls: Array<{ hdtype: string, httpurl: string }>
     isfavorite: number
     iszan: number
-    xxx_api_auth: string
+}
 
+export interface CommeItem {
+    addtime: string
+    avatar_url: string
+    content: string
+    depth: string
+    downnum: string
+    gender: number
+    gicon: string
+    id: string
+    isvip: number
+    lft: string
+    nickname: string
+    parentid: string
+    rgt: string
+    rootid: string
+    sid: string
+    subrows: []
+    uid: string
+    upnum: string
+    username: string
+    vodid: string
+    __closenum__: string
 }
 
 export interface CommentsInfo {
-
-    pageinfo: PlayInfo
-    rows: Array<{
-        addtime: string
-        avatar_url: string
-        content: string
-        depth: number
-        downnum: number
-        gender: 2
-        gicon: string
-        id: number
-        isvip: 0
-        lft: number
-        nickname: number
-        parentid: number
-        rgt: number
-        rootid: number
-        sid: number
-        subrows: []
-        uid: number
-        upnum: number
-        username: number
-        vodid: number
-        __closenum__: number
-    }>
-    xxx_api_auth: string
+    pageinfo: PageInfo
+    rows: Array<CommeItem>
 
 }
 
 export interface VideoLike {
 
     categories: {
-        cateid: number, catename: string, itemcount: number | null
+        cateid: string, catename: string, itemcount: number | null
     }
     likerows: Array<VideoInfo>
     similarrows: VideoInfo[]
-    vodrow: VideoInfo
-    errmsg: string
-
+    vodrow: VideoInfo | undefined
 }
 
 //演员
 export interface Actor {
     addtime: string
-    age: number
+    age: string
     avatar: string
     coverpic: string
-    cup: number
-    downnum: number
+    cup: string
+    downnum: string
     intro: string
-    itemcount: number
-    spid: number
+    itemcount: string
+    spid: string
     spname: string
-    sptype: number
+    sptype: string
     updatetime: string
-    upnum: number
+    upnum: string
     vodrows?: VideoInfo[]
 }
 
@@ -153,15 +148,15 @@ export interface SpecialDetail {
     vodrows: Array<VideoInfo>
 }
 
-interface KV {
-    keyid: 1,
-    value: '免费'
+type KV = {
+    keyid: number,
+    value: string
 }
 
 export interface Cat {
     action: string
     areas: Array<{ areaid: number, areaname: string, sortnum: number }>
-    categories: Array<{ cateid: number, parentid: number, uuid: '', catename: string }>
+    categories: Array<{ cateid: number, parentid: string, uuid: '', catename: string }>
     definitions: Array<KV>
     durations: Array<KV>
     freetypes: Array<KV>
@@ -185,7 +180,7 @@ export interface Cat {
     // "$cateid:0-$areaid:0-$yearid:0-$definition:0-$duration:0-$freetype:0-$mosaic:0-$langvoice:0-$orderby:0-$page:1"
     sample_params: string
     vodrows: Array<VideoInfo>
-    years: Array<{ yearid: number, yearname: number, sortnum: number }>
+    years: Array<{ yearid: number, yearname: string, sortnum: string }>
 }
 
 
@@ -205,9 +200,9 @@ export interface HomeList {
     v2sliderows: Slide[] // 图
 }
 
-export interface Slide{
+export interface Slide {
     pic: string
     scene: string
-    spid: number
+    spid?: number
     title: string
 }

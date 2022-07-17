@@ -58,6 +58,8 @@ const http: Http = {
                 .then((res) => {
                     if (res.data.retcode===0){
                         resolve(res.data.data);
+                    }else {
+                        throw new Error()
                     }
                 })
                 .catch((err) => {
